@@ -1,12 +1,14 @@
+import os
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
     HUSK_NAME: str = "Husk"
-    HUSK_ENV: str = "development"
-
-    LLM_API_KEY: str
-    LLM_BASE_URL: str = "https://generativelanguage.googleapis.com/v1beta/openai/"
-    DEFAULT_MODEL: str = "gemini-2.5-flash"
+    HUSK_ENV: str = "production"
+    
+    # Reads from Render Environment Variables first, falls back to .env locally
+    LLM_API_KEY: str = os.getenv("LLM_API_KEY", "")
+    LLM_BASE_URL: str = os.getenv("LLM_BASE_URL", "https://generativelanguage.googleapis.com/v1beta/openai/")
+    DEFAULT_MODEL: str = os.getenv("DEFAULT_MODEL", "gemini-2.5-flash")
 
     model_config = SettingsConfigDict(
         env_file=".env",
@@ -14,5 +16,5 @@ class Settings(BaseSettings):
         extra="ignore"
     )
 
-# Instantiate settings globally
+# Instantiate settings
 settings = Settings()
