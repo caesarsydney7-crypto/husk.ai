@@ -1,0 +1,9 @@
+openai
+pydantic
+pydantic-settings
+python-dotenv
+rich
+duckduckgo-search
+requests
+beautifulsoup4
+streamlit
