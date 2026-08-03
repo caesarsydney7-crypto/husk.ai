@@ -6,4 +6,3 @@ rich
 duckduckgo-search
 requests
 beautifulsoup4
-streamlit
